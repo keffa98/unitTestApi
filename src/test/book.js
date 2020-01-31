@@ -16,21 +16,65 @@ chai.use(chaiAsPromised);
 
 // fait les Tests d'integration en premier
 
-  describe('get /book', () => {
-    beforeEach(() => {
-    	resetDatabase(path.join(__dirname, '../data/books.json'), {
-    		books : []
-    	});
-    });
+describe('get/post /book', () => {
+	beforeEach(() => {
+		resetDatabase(path.join(__dirname, '../data/books.json'), {
+			books : []
+		});
+	});
 
-    it('response body is an object', (done) => {
+	it('response body is an object', (done) => {
 		chai.request(server)
-			.get('/book')  
+			.get('/book')
 			.end(function (err, res) {
-			     expect(res.body).to.be.an('object');
-			     done();
-			  });
-    });
+				expect(res.body).to.be.an('object');
+				done();
+			});
+	});
 
+	it('get resp status equal 200', (done) => {
+		chai.request(server)
+			.get('/book')
+			.end(function (err, res) {
+				expect(res).to.have.status(200);
+				done();
+			});
+	});
 
-  });
+	it('keys books is an array', (done) => {
+		chai.request(server)
+			.get('/book')
+			.end(function (err, res) {
+				expect(res.body.books).to.be.an('array');
+				done();
+			});
+	});
+
+	it('array books is equal to 0', (done) => {
+		chai.request(server)
+			.get('/book')
+			.end(function (err, res) {
+				expect(res.body.books).to.have.lengthOf(0);
+				done();
+			});
+	});
+
+	it('post resp status equal 200', (done) => {
+		chai.request(server)
+			.post('/book')
+			.end(function (err, res) {
+				expect(res).to.have.status(200);
+				done();
+			});
+	});
+
+	it('book successfully added', (done) => {
+		chai.request(server)
+			.post('/book')
+			.end(function (err, res) {
+				expect(res.body.message).to.be.a('string','book successfully added');
+				done();
+			});
+	});
+
+});
