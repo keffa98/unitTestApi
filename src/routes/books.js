@@ -4,8 +4,6 @@ import uuid from 'uuid/v4';
 
 import initIfFileIfMissing from '../utils/initIfFileMissing';
 
-
-
 const getBooks = (req, res) => {
   // Pour activer cette route, commenter cette ligne et decommenté le reste
   //res.status(200).send({ message: 'route non activé' });
