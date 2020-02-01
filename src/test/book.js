@@ -238,14 +238,14 @@ describe('get /book', () => {
 
 
 
-	it('array books is equal to 0', (done) => {
-		chai.request(server)
-			.get('/book')
-			.end(function (err, res) {
-				expect(res.body.books).to.have.lengthOf(0);
-				done();
-			});
-	});
+	// it('array books is equal to 0', (done) => {
+	// 	chai.request(server)
+	// 		.get('/book')
+	// 		.end(function (err, res) {
+	// 			expect(res.body.books).to.have.lengthOf(0);
+	// 			done();
+	// 		});
+	// });
 
 	it('post resp status equal 200', (done) => {
 		chai.request(server)
