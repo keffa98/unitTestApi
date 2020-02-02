@@ -19,6 +19,7 @@ steps:
 - script: |
     npm install
     npm test
+    npm start
   displayName: 'npm install and test'
 
 - task: ArchiveFiles@2
