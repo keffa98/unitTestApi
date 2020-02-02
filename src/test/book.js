@@ -32,12 +32,23 @@ describe('get/post /book', () => {
 			});
 	});
 
-	it('get resp status equal 200', (done) => {
+	it('get body resp to be an object', (done) => {
+
 		chai.request(server)
 			.get('/book')
 			.end(function (err, res) {
 
 			     expect(res.body).to.be.an('object');
+			     done();
+			  });
+	});
+
+	it(' get books to be an array', (done) => {
+		chai.request(server)
+			.get('/book')
+			.end(function (err, res) {
+
+			     expect(res.body.books).to.be.an('array');
 			     done();
 			  });
 	});
@@ -51,6 +62,8 @@ describe('get/post /book', () => {
 				done();
 			});
 	});
+
+
 
 	
   });
