@@ -41,6 +41,17 @@ describe('get/post /book', () => {
 			     done();
 			  });
 	});
+
+	it('array books is equal to 0', (done) => {
+
+		chai.request(server)
+			.get('/book')
+			.end(function (err, res) {
+				expect(res.body.books).to.have.lengthOf(0);
+				done();
+			});
+	});
+
 	
   });
 
@@ -239,6 +250,7 @@ describe('get /book', () => {
 
 		//Must be reviewed
 	// it('array books is equal to 0', (done) => {
+
 	// 	chai.request(server)
 	// 		.get('/book')
 	// 		.end(function (err, res) {
