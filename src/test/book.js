@@ -261,7 +261,7 @@ describe('get /book', () => {
 		});
 
 
-		//Must be reviewed
+		// review this.
 	// it('array books is equal to 0', (done) => {
 
 	// 	chai.request(server)
