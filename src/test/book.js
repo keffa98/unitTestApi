@@ -23,46 +23,59 @@ describe('get/post /book', () => {
 		});
 	});
 
-	it('response body is an object', (done) => {
-		chai.request(server)
-			.get('/book')
-			.end(function (err, res) {
-				expect(res.body).to.be.an('object');
-				done();
-			});
-	});
+	    it('response body is an object', (done) => {
+        chai.request(server)
+            .get('/book')
+            .end(function (err, res) {
+                expect(res.body).to.be.an('object');
+                done();
+            });
+    });
 
-	it('get body resp to be an object', (done) => {
+    it('get resp status equal 200', (done) => {
+        chai.request(server)
+            .get('/book')
+            .end(function (err, res) {
+                expect(res).to.have.status(200);
+                done();
+            });
+    });
 
-		chai.request(server)
-			.get('/book')
-			.end(function (err, res) {
+    it('keys books is an array', (done) => {
+        chai.request(server)
+            .get('/book')
+            .end(function (err, res) {
+                expect(res.body.books).to.be.an('array');
+                done();
+            });
+    });
 
-			     expect(res.body).to.be.an('object');
-			     done();
-			  });
-	});
+    it('array books is equal to 0', (done) => {
+        chai.request(server)
+            .get('/book')
+            .end(function (err, res) {
+                expect(res.body.books).to.have.lengthOf(0);
+                done();
+            });
+    });
 
-	it(' get books to be an array', (done) => {
-		chai.request(server)
-			.get('/book')
-			.end(function (err, res) {
+    it('post resp status equal 200', (done) => {
+        chai.request(server)
+            .post('/book')
+            .end(function (err, res) {
+                expect(res).to.have.status(200);
+                done();
+            });
+    });
 
-			     expect(res.body.books).to.be.an('array');
-			     done();
-			  });
-	});
-
-	it('array books is equal to 0', (done) => {
-
-		chai.request(server)
-			.get('/book')
-			.end(function (err, res) {
-				expect(res.body.books).to.have.lengthOf(0);
-				done();
-			});
-	});
-
+    it('book successfully added', (done) => {
+        chai.request(server)
+            .post('/book')
+            .end(function (err, res) {
+                expect(res.body.message).to.be.a('string','book successfully added');
+                done();
+            });
+    });
 
 
 	
